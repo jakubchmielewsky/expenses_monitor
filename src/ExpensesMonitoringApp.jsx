@@ -1,8 +1,12 @@
+import React from "react";
+
+//components 
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* <NavBar/> */}
+      <NavBar/>
       <main className="max-w-7xl mx-auto py-6">
         <div className="px-4 py-6">
           <div className="grid grid-cols1">
