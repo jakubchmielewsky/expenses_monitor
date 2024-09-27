@@ -22,7 +22,7 @@ const AddExpenseForm = () => {
               <textarea
                 name="description"
                 rows="3"
-                className="mt-1 shadow w-full block focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                className="mt-1 shadow w-full block border-gray-300 rounded-md"
                 onChange={""}></textarea>
 
             </div>

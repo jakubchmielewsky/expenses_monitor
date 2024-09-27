@@ -3,6 +3,7 @@ import React from "react";
 //components 
 import NavBar from "./components/NavBar";
 import AddExpenseForm from "./components/AddExpenseForm";
+import ExpensesSummary from "./components/ExpensesSummary";
 
 function App() {
   return (
@@ -10,9 +11,9 @@ function App() {
       <NavBar/>
       <main className="max-w-7xl mx-auto py-6">
         <div className="px-4 py-6">
-          <div className="grid grid-cols1">
+          <div className="grid grid-cols-1 gap-6">
             <AddExpenseForm/>
-            {/* <ExpenseSummary/> */}
+            <ExpensesSummary/>
           </div>
           {/* <ExpenseList/> */}
         </div>
