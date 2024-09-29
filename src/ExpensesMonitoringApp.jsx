@@ -4,19 +4,18 @@ import React from "react";
 import NavBar from "./components/NavBar";
 import AddExpenseForm from "./components/AddExpenseForm";
 import ExpensesSummary from "./components/ExpensesSummary";
+import ExpensesList from "./components/ExpensesList";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <NavBar/>
-      <main className="max-w-7xl mx-auto py-6">
-        <div className="px-4 py-6">
+      <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
           <div className="grid grid-cols-1 gap-6">
             <AddExpenseForm/>
             <ExpensesSummary/>
           </div>
-          {/* <ExpenseList/> */}
-        </div>
+          <ExpensesList/>
       </main>
     </div>
   );
