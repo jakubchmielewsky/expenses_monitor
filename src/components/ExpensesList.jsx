@@ -12,9 +12,9 @@ const ExpenseList = () => {
             <div className="py-5 px-4">
                 <h2 className="font-medium text-lg">Expense List</h2>
 
-                <div className="mt-4 grid grid-cols-1 gap-y-6">
-                    <InputGroup label="Filter by date" type="" value={""} onChange={""}/>
-                    <InputGroup label="Filter by category" type="" value={""} onChange={""}/>
+                <div className="mt-4 grid grid-cols-2 gap-6 max-w-xl">
+                    <InputGroup label="Filter by date" type="date" value={""} onChange={""}/>
+                    <InputGroup label="Filter by category" type="text" value={""} onChange={""}/>
                 </div>
 
                 <div className="mt-6 shadow border-gray-200 overflow-x-auto">
@@ -56,7 +56,7 @@ const ExpenseList = () => {
                           <button className="text-indigo-500">
                             <FaEdit />
                           </button>
-                          <button className="ml-4 text-red-500">
+                          <button className="ml-5 text-red-500">
                             <FaTrash />
                           </button>
                         </td>
