@@ -2,7 +2,7 @@ import React,{createContext, useReducer} from "react";
 
 export const ExpensesContext = createContext();
 
-export const expensesActions = {
+const expensesActions = {
     add: {type: 'ADD'},
     delete: {type: 'DELETE'},
     edit: {type: 'EDIT'}
@@ -29,7 +29,7 @@ const ExpensesProvider = ({children}) => {
     ]);
 
     return(
-        <ExpensesContext.Provider value={{expenses, dispatch}}>
+        <ExpensesContext.Provider value={{expenses, dispatch, expensesActions}}>
             {children}
         </ExpensesContext.Provider>
     )
