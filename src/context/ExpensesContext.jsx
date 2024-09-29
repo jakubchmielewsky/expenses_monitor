@@ -1,8 +1,8 @@
 import React,{createContext, useReducer} from "react";
 
-const ExpensesContext = createContext();
+export const ExpensesContext = createContext();
 
-export const actions = {
+export const expensesActions = {
     add: {type: 'ADD'},
     delete: {type: 'DELETE'},
     edit: {type: 'EDIT'}
@@ -22,7 +22,11 @@ const expensesReducer = (expenses, action) => {
 };
 
 const ExpensesProvider = ({children}) => {
-    const [expenses, dispatch] = useReducer(expensesReducer, []);
+    const [expenses, dispatch] = useReducer(expensesReducer, [
+        { id: 1, amount: 50, category: "Food", date: "2023-05-01", description: "Groceries" },
+    { id: 2, amount: 30, category: "Transport", date: "2023-05-02", description: "Bus fare" },
+    { id: 3, amount: 100, category: "Entertainment", date: "2023-05-03", description: "Movie night" },
+    ]);
 
     return(
         <ExpensesContext.Provider value={{expenses, dispatch}}>
