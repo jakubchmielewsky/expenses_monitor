@@ -2,6 +2,7 @@ import React from "react";
 
 //context
 import ExpensesProvider from "./context/ExpensesContext";
+import AddExpenseProvider from "./context/AddExpenseFormContext";
 
 //components
 import NavBar from "./components/NavBar";
@@ -16,10 +17,14 @@ function App() {
         <NavBar/>
         <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
           <div className="grid grid-cols-1 gap-6">
-            <AddExpenseForm/>
+            <AddExpenseProvider>
+              <AddExpenseForm/>
+            </AddExpenseProvider>
             <ExpensesSummary/>
           </div>
-          <ExpensesList/>
+          <AddExpenseProvider>
+            <ExpensesList/>
+          </AddExpenseProvider>
         </main>
       </div>
     </ExpensesProvider>

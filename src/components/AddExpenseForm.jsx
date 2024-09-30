@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 //icons
 import {FaPlus} from "react-icons/fa";
@@ -9,6 +9,9 @@ import InputGroup from "./InputGroup";
 //expenses context
 import {useExpenses} from "../hooks/useExpenses";
 
+//expense form context
+import {useAddExpenseForm} from "../hooks/useAddExpense";
+
 //id generator
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,8 +19,9 @@ const AddExpenseForm = () => {
 
   const {dispatch, expensesActions} = useExpenses();
 
-  const [expense,
-    setExpense] = useState({id: "", amount: "", category: "", date: "", description: ""});
+  const {expense, setExpense} = useAddExpenseForm();
+  //const [expense, setExpense] = useState({id: "", amount: "", category: "", date: "", description: ""});
+
 
   const handleInputChange = (e) => {
     const {name, value} = e.target;
@@ -31,6 +35,9 @@ const AddExpenseForm = () => {
     e.preventDefault();
     const newId=uuidv4();
     dispatch({type:expensesActions.add, payload: {id: newId, ...expense}});
+
+
+    setExpense({id: "", amount: "", category: "", date: "", description: ""});
   }
 
   return (
