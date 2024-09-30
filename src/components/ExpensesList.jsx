@@ -9,9 +9,22 @@ import {FaEdit, FaTrash} from "react-icons/fa"
 //expenses context
 import {useExpenses} from "../hooks/useExpenses";
 
+//add expense form context
+import { useAddExpenseForm } from "../hooks/useAddExpense";
+
 const ExpenseList = () => {
 
   const {expenses, dispatch, expensesActions} = useExpenses();
+
+  const {setExpense} = useAddExpenseForm();
+
+  const handleEdit = (expense) => {
+    setExpense(expense);
+  };
+
+  const handleAdd = (expense) => {
+    dispatch({type:expensesActions.delete,payload:{expense}});
+  };
 
   return (
     <div className="bg-white shadow rounded-lg mt-8">
@@ -62,10 +75,10 @@ const ExpenseList = () => {
                       ${expense.amount}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-indigo-500">
+                      <button className="text-indigo-500" onClick={handleEdit(expense)}>
                         <FaEdit/>
                       </button>
-                      <button className="ml-5 text-red-500">
+                      <button className="ml-5 text-red-500" onClick={handleAdd(expense)}>
                         <FaTrash/>
                       </button>
                     </td>
