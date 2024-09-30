@@ -1,4 +1,4 @@
-import React,{createContext, useReducer} from "react";
+import React,{createContext, useReducer,useState} from "react";
 
 export const ExpensesContext = createContext();
 
@@ -28,8 +28,10 @@ const ExpensesProvider = ({children}) => {
     { id: 3, amount: 100, category: "Entertainment", date: "2023-05-03", description: "Movie night" },
     ]);
 
+    const [expenseForm, setExpenseForm] = useState({id: "", amount: "", category: "", date: "", description: ""});
+
     return(
-        <ExpensesContext.Provider value={{expenses, dispatch, expensesActions}}>
+        <ExpensesContext.Provider value={{expenses, dispatch, expensesActions, expenseForm, setExpenseForm}}>
             {children}
         </ExpensesContext.Provider>
     )

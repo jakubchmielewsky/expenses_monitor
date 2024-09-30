@@ -3,28 +3,17 @@ import React from "react";
 //components
 import InputGroup from "./InputGroup";
 
-//icons
-import {FaEdit, FaTrash} from "react-icons/fa"
-
 //expenses context
 import {useExpenses} from "../hooks/useExpenses";
 
-//add expense form context
-import { useAddExpenseForm } from "../hooks/useAddExpense";
+//list items
+import ExpenseListItem from "./ExpenseListItem";
 
 const ExpenseList = () => {
 
-  const {expenses, dispatch, expensesActions} = useExpenses();
+  const {expenses} = useExpenses();
 
-  const {setExpense} = useAddExpenseForm();
-
-  const handleEdit = (expense) => {
-    setExpense(expense);
-  };
-
-  const handleAdd = (expense) => {
-    dispatch({type:expensesActions.delete,payload:{expense}});
-  };
+  
 
   return (
     <div className="bg-white shadow rounded-lg mt-8">
@@ -61,28 +50,7 @@ const ExpenseList = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {expenses.map((expense) => {
                 return (
-                  <tr key={expense.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expense.date}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expense.category}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {expense.description}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      ${expense.amount}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-indigo-500" onClick={handleEdit(expense)}>
-                        <FaEdit/>
-                      </button>
-                      <button className="ml-5 text-red-500" onClick={handleAdd(expense)}>
-                        <FaTrash/>
-                      </button>
-                    </td>
-                  </tr>
+                  <ExpenseListItem expense={expense} key={expense.id}/>
                 )
               })
 }

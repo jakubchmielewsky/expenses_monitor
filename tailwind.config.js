@@ -7,6 +7,7 @@ module.exports = {
     "./src/components/ExpensesSummary.jsx",
     "./src/components/InputGroup.jsx",
     "./src/components/ExpensesList.jsx",
+    "./src/components/ExpenseListItem.jsx",
   ],
   theme: {
     extend: {},

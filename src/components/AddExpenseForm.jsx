@@ -9,24 +9,17 @@ import InputGroup from "./InputGroup";
 //expenses context
 import {useExpenses} from "../hooks/useExpenses";
 
-//expense form context
-import {useAddExpenseForm} from "../hooks/useAddExpense";
-
 //id generator
 import { v4 as uuidv4 } from "uuid";
 
 const AddExpenseForm = () => {
 
-  const {dispatch, expensesActions} = useExpenses();
-
-  const {expense, setExpense} = useAddExpenseForm();
-  //const [expense, setExpense] = useState({id: "", amount: "", category: "", date: "", description: ""});
-
+  const {dispatch, expensesActions,expenseForm, setExpenseForm} = useExpenses();
 
   const handleInputChange = (e) => {
     const {name, value} = e.target;
-    setExpense({
-      ...expense,
+    setExpenseForm({
+      ...expenseForm,
       [name]: value
     });
   };
@@ -34,11 +27,13 @@ const AddExpenseForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newId=uuidv4();
-    dispatch({type:expensesActions.add, payload: {id: newId, ...expense}});
+    dispatch({type:expensesActions.add, payload: {id: newId, ...expenseForm}});
 
 
-    setExpense({id: "", amount: "", category: "", date: "", description: ""});
+    setExpenseForm({id: "", amount: "", category: "", date: "", description: ""});
   }
+
+  console.log(expenseForm);
 
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg">
@@ -50,21 +45,21 @@ const AddExpenseForm = () => {
               name="amount"
               label="Amount"
               type="number"
-              value={expense.amount}
+              value={expenseForm.amount}
               onChange={handleInputChange}/>
 
             <InputGroup
               name="category"
               label="Category"
               type="text"
-              value={expense.category}
+              value={expenseForm.category}
               onChange={handleInputChange}/>
 
             <InputGroup
               name="date"
               label="Date"
               type="date"
-              value={expense.date}
+              value={expenseForm.date}
               onChange={handleInputChange}/>
 
             <div>
@@ -73,7 +68,7 @@ const AddExpenseForm = () => {
                 name="description"
                 rows="3"
                 className="mt-1 shadow w-full block border-gray-300 rounded-md"
-                value={expense.description}
+                value={expenseForm.description}
                 onChange={handleInputChange}></textarea>
 
             </div>
