@@ -8,10 +8,11 @@ import {useExpenses} from "../hooks/useExpenses";
 
 const ExpenseListItem = ({expense}) => {
 
-  const {dispatch, expensesActions, setExpenseForm} = useExpenses();
+  const {dispatch, expensesActions, setExpenseForm, expenseFormRef} = useExpenses();
 
   const handleEdit = () => {
     setExpenseForm(expense);
+    expenseFormRef.current.scrollIntoView({behavior: 'smooth'});
   };
 
   const handleDelete = () => {
