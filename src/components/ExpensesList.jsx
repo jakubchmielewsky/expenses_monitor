@@ -12,7 +12,6 @@ import {useExpenses} from "../hooks/useExpenses";
 const ExpenseList = () => {
 
   const {expenses, dispatch, expensesActions} = useExpenses();
-  console.log(dispatch);
 
   return (
     <div className="bg-white shadow rounded-lg mt-8">
@@ -44,8 +43,6 @@ const ExpenseList = () => {
                   className="px-6 py-3 text-gray-500 uppercase font-medium tracking-wider text-xs">
                   Amount
                 </th>
-                <th
-                  className="px-6 py-3 text-gray-500 uppercase font-medium tracking-wider text-xs"></th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">

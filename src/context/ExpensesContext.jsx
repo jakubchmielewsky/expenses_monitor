@@ -3,9 +3,9 @@ import React,{createContext, useReducer} from "react";
 export const ExpensesContext = createContext();
 
 const expensesActions = {
-    add: {type: 'ADD'},
-    delete: {type: 'DELETE'},
-    edit: {type: 'EDIT'}
+    add: 'ADD',
+    delete: 'DELETE',
+    edit: 'EDIT'
 };
 
 const expensesReducer = (expenses, action) => {

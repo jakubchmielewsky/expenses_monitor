@@ -4,13 +4,15 @@ const InputGroup = ({
   label = "label",
   type,
   value,
-  onChange
+  onChange,
+  name
 }) => {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700">{label}</label>
 
       <input
+        name={name}
         type={type}
         value={value}
         onChange={onChange}
