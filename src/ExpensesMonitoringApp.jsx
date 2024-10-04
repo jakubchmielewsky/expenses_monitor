@@ -11,21 +11,25 @@ import ExpensesList from "./components/ExpensesList";
 
 //toasts
 import ToastContainer from "./components/ToastContainer";
+//toasts context
+import {ToastProvider} from "./context/ToastContext";
 
 function App() {
   return (
     <ExpensesProvider>
-      <div className="min-h-screen bg-gray-100">
-        <ToastContainer/>
-        <NavBar/>
-        <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <AddExpenseForm/>
-            <ExpensesSummary/>
-          </div>
-          <ExpensesList/>
-        </main>
-      </div>
+      <ToastProvider>
+        <div className="min-h-screen bg-gray-100">
+          <ToastContainer/>
+          <NavBar/>
+          <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <AddExpenseForm/>
+              <ExpensesSummary/>
+            </div>
+            <ExpensesList/>
+          </main>
+        </div>
+      </ToastProvider>
     </ExpensesProvider>
   );
 }
