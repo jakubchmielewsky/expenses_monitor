@@ -8,6 +8,8 @@ module.exports = {
     "./src/components/InputGroup.jsx",
     "./src/components/ExpensesList.jsx",
     "./src/components/ExpenseListItem.jsx",
+    "./src/components/Toast.jsx",
+    "./src/components/ToastContainer.jsx",
   ],
   theme: {
     extend: {},
