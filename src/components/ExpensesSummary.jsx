@@ -33,10 +33,6 @@ const ExpensesSummary = () => {
         case "daily":
           key = expense.date;
           break;
-        case "weekly":
-          const date = new Date(expense.date);
-          key = `${date.getFullYear()}-W${Math.ceil((date.getDate() + date.getDay()) / 7)}`;
-          break;
         case "monthly":
           key = expense
             .date
@@ -57,7 +53,7 @@ const ExpensesSummary = () => {
     return aggregated;
   }
 
-  // const chartData = () => { }
+
   const chartData = {
     labels: Object.keys(aggregateExpenses()),
     datasets: [
@@ -123,13 +119,11 @@ const ExpensesSummary = () => {
           className="w-full border-gray-300 shadow rounded-lg outline-none pl-3 pt-2 focus:"
           onChange={handleChartViewChange}>
           <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
           <option value="monthly">Monthly</option>
         </select>
 
-        {/* <canvas data={chartData} options={chartOptions}></canvas> */}
         <div className="overflow-x-auto mt-2 h-64">
-          <div className="min-w-[400px]  w-full h-full">
+          <div className="min-w-[500px]  w-full h-full">
             <Bar data={chartData} options={chartOptions}/>
           </div>
         </div>

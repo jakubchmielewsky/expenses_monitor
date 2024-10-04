@@ -24,8 +24,25 @@ const AddExpenseForm = () => {
     });
   };
 
+  const getTodaysDate = () => {
+    const date= new Date();
+
+    const day= String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(!expenseForm.Date){
+      const today = getTodaysDate();
+      setExpenseForm(
+        {...expenseForm, date: today}
+      ); //default date is today
+    }
 
     //if id is set, edit expense with that id
     if(expenseForm.id){
@@ -33,7 +50,7 @@ const AddExpenseForm = () => {
     }
     else{
       const newId=uuidv4();
-      dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId }});
+      dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId}});
     }
 
 
@@ -77,7 +94,7 @@ const AddExpenseForm = () => {
               <textarea
                 name="description"
                 rows="3"
-                className="mt-1 shadow w-full block border-gray-300 rounded-md"
+                className="mt-1 shadow w-full border-gray-300 rounded-md"
                 value={expenseForm.description}
                 onChange={handleInputChange}></textarea>
 

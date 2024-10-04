@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 
 //components
 import InputGroup from "./InputGroup";
@@ -13,6 +13,16 @@ const ExpenseList = () => {
 
   const {expenses} = useExpenses();
 
+  const [dateFilter,setDateFilter] = useState("");
+  const [categoryFilter,setCategoryFilter] = useState("");
+
+  const filteredExpenses = expenses.filter((expense) => {
+    const matchesDate = dateFilter ? expense.date === dateFilter : true;
+    const matchesCategory = categoryFilter ? expense.category.toLowerCase().includes(categoryFilter.toLowerCase()) : true;
+
+    return matchesDate && matchesCategory;
+  });
+  
   
 
   return (
@@ -21,8 +31,8 @@ const ExpenseList = () => {
         <h2 className="font-medium text-lg">Expense List</h2>
 
         <div className="mt-4 grid grid-cols-2 gap-6 max-w-xl">
-          <InputGroup label="Filter by date" type="date" value={""} onChange={""}/>
-          <InputGroup label="Filter by category" type="text" value={""} onChange={""}/>
+          <InputGroup label="Filter by date" type="date" value={dateFilter} onChange={(e)=>setDateFilter(e.target.value)}/>
+          <InputGroup label="Filter by category" type="text" value={categoryFilter} onChange={(e)=>setCategoryFilter(e.target.value)}/>
         </div>
 
         <div className="mt-6 shadow border-gray-200 overflow-x-auto">
@@ -51,7 +61,7 @@ const ExpenseList = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {expenses.map((expense) => {
+              {filteredExpenses.reverse().map((expense) => {
                 return (
                   <ExpenseListItem expense={expense} key={expense.id}/>
                 )
