@@ -79,8 +79,7 @@ const AddExpenseForm = () => {
                 rows="3"
                 className="mt-1 shadow w-full block border-gray-300 rounded-md"
                 value={expenseForm.description}
-                onChange={handleInputChange}
-                required></textarea>
+                onChange={handleInputChange}></textarea>
 
             </div>
           </div>

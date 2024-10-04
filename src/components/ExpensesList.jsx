@@ -45,6 +45,9 @@ const ExpenseList = () => {
                   className="px-6 py-3 text-gray-500 uppercase font-medium tracking-wider text-xs">
                   Amount
                 </th>
+                <th
+                  className="px-6 py-3 text-gray-500 uppercase font-medium tracking-wider text-xs">
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
