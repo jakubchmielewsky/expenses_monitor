@@ -1,4 +1,4 @@
-import React,{createContext,useState} from "react";
+import React,{createContext,useContext,useState} from "react";
 
 const ToastContext = createContext();
 
@@ -9,9 +9,14 @@ export const ToastProvider = ({children}) => {
         setToasts([...toasts,{id:Date.now(),message,color}]);
     }
 
+    const removeToast = (id) => {
+        setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+      }
+
     return(
-        <ToastContext.Provider value={{toasts, addToast}}>
+        <ToastContext.Provider value={{toasts, addToast, removeToast}}>
             {children}
         </ToastContext.Provider>
     )
 }
+export const useToasts = () => useContext(ToastContext);
