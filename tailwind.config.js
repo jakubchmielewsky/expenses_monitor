@@ -10,6 +10,7 @@ module.exports = {
     "./src/components/ExpenseListItem.jsx",
     "./src/components/Toast.jsx",
     "./src/components/ToastContainer.jsx",
+    "./src/components/AuthenticationForm.jsx",
   ],
   safelist: [
     'w-full',  

@@ -14,6 +14,7 @@ import ToastContainer from "./components/ToastContainer";
 //toasts context
 import {ToastProvider} from "./context/ToastContext";
 import { FormProvider } from "./context/FormContext";
+import AuthenticationForm from "./components/AuthenticationForm";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <ToastProvider>
         <FormProvider>
           <div className="min-h-screen bg-gray-100">
+            <AuthenticationForm/>
             <ToastContainer duration={2000}/>
             <NavBar/>
             <main className="max-w-7xl mx-auto py-12 px-4 gap-6">

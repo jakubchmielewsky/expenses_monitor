@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "expenses-monitor-54cee",
+    "expensesMonitor": "expenses-monitor-54cee"
+  },
+  "targets": {},
+  "etags": {}
+}
