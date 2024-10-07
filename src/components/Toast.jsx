@@ -16,7 +16,7 @@ const Toast = ({
 
   return (
     <div
-      className={`right-10 h-12 w-60 bg-white rounded-md shadow-custom flex-col overflow-hidden ${animationSwitch
+      className={`right-10 h-12 bg-white rounded-md shadow-custom flex-col overflow-hidden ${animationSwitch
       ? "animate-slide-out"
       : "animate-slide-in"} transform transition-transform duration-500 ease-in-out`}>
       <div className="flex items-center justify-center h-10">

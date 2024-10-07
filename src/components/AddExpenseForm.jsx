@@ -42,12 +42,6 @@ const AddExpenseForm = () => {
     e.preventDefault();
 
     if(expenseForm.amount && expenseForm.category){
-      // if(!expenseForm.Date){
-      //   const today = getTodaysDate();
-      //   setExpenseForm(
-      //     {...expenseForm, date: today}
-      //   ); //default date is today
-      // }
 
       //if id is set, edit expense with that id
       if(expenseForm.id){

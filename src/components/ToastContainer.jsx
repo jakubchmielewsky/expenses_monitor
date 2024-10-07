@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Toast from "./Toast";
 import { useToasts } from "../context/ToastContext";
 
-const ToastContainer = ({ duration = 2000 }) => {
+const ToastContainer = ({ duration = 3000 }) => {
   const { toasts, removeToast } = useToasts();
   const [closing, setClosing] = useState({});
 
@@ -25,7 +25,7 @@ const ToastContainer = ({ duration = 2000 }) => {
 
 
   return (
-    <div className="fixed top-32 right-10 flex flex-col gap-6">
+    <div className="fixed flex flex-col w-full left-0 right-0 top-0 md:left-auto md:w-60 md:top-32 md:right-10 md:gap-6">
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
