@@ -4,7 +4,7 @@ import React,{useState, useEffect} from "react";
 import InputGroup from "./InputGroup";
 
 //expenses context
-import {useExpenses} from "../hooks/useExpenses";
+import {useExpenses} from "./../context/ExpensesContext"
 
 //list items
 import ExpenseListItem from "./ExpenseListItem";

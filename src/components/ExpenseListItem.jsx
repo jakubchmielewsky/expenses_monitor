@@ -4,14 +4,16 @@ import React from "react";
 import {FaEdit, FaTrash} from "react-icons/fa"
 
 //expenses context
-import {useExpenses} from "../hooks/useExpenses";
+import { useExpenses } from "../context/ExpensesContext";
+import { useForm } from "../context/FormContext";
 
 //toasts
 import { useToasts } from "../context/ToastContext";
 
 const ExpenseListItem = ({expense}) => {
 
-  const {dispatch, expensesActions, setExpenseForm, expenseFormRef} = useExpenses();
+  const {dispatch, expensesActions} = useExpenses();
+  const {setExpenseForm, expenseFormRef} = useForm();
   const {addToast} = useToasts();
 
   const handleEdit = () => {

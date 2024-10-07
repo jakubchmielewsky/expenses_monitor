@@ -1,6 +1,6 @@
-import React,{createContext, useReducer,useState, useRef} from "react";
+import React,{createContext, useReducer, useContext} from "react";
 
-export const ExpensesContext = createContext();
+ const ExpensesContext = createContext();
 
 const expensesActions = {
     add: 'ADD',
@@ -21,21 +21,18 @@ const expensesReducer = (expenses, action) => {
     }
 };
 
-const ExpensesProvider = ({children}) => {
+export const ExpensesProvider = ({children}) => {
     const [expenses, dispatch] = useReducer(expensesReducer, [
         { id: 1, amount: 50, category: "Food", date: "2023-05-01", description: "Groceries" },
     { id: 2, amount: 30, category: "Transport", date: "2023-05-02", description: "Bus fare" },
     { id: 3, amount: 100, category: "Entertainment", date: "2023-05-03", description: "Movie night" },
     ]);
-
-    const expenseFormRef = useRef();
-    const [expenseForm, setExpenseForm] = useState({id: "", amount: "", category: "", date: "", description: ""});
-
+    
     return(
-        <ExpensesContext.Provider value={{expenses, dispatch, expensesActions, expenseForm, setExpenseForm, expenseFormRef}}>
+        <ExpensesContext.Provider value={{expenses, dispatch, expensesActions}}>
             {children}
         </ExpensesContext.Provider>
     )
 };
 
-export default ExpensesProvider;
+export const useExpenses = () => useContext(ExpensesContext);

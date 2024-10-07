@@ -7,7 +7,8 @@ import {FaPlus} from "react-icons/fa";
 import InputGroup from "./InputGroup";
 
 //expenses context
-import {useExpenses} from "../hooks/useExpenses";
+import { useExpenses } from "../context/ExpensesContext";
+import { useForm } from "../context/FormContext";
 
 //id generator
 import { v4 as uuidv4 } from "uuid";
@@ -17,7 +18,8 @@ import { useToasts } from "../context/ToastContext";
 
 const AddExpenseForm = () => {
 
-  const {dispatch, expensesActions,expenseForm, setExpenseForm, expenseFormRef} = useExpenses();
+  const {dispatch, expensesActions} = useExpenses();
+  const {expenseForm, setExpenseForm, expenseFormRef} = useForm();
   const {addToast} = useToasts();
 
   const handleInputChange = (e) => {

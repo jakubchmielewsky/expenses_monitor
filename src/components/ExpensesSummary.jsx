@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 //icons
 import {FaFileExport} from "react-icons/fa"
-import {useExpenses} from "../hooks/useExpenses";
+import { useExpenses } from "../context/ExpensesContext";
 
 //chart
 import {Bar} from "react-chartjs-2";
