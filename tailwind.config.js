@@ -19,6 +19,7 @@ module.exports = {
     'bg-indigo-500',
     'bg-red-500',
     'bg-yellow-500',
+    'bg-emerald-500'
 
   ],
   theme: {

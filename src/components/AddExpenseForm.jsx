@@ -41,20 +41,26 @@ const AddExpenseForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(!expenseForm.Date){
-      const today = getTodaysDate();
-      setExpenseForm(
-        {...expenseForm, date: today}
-      ); //default date is today
-    }
+    if(expenseForm.amount && expenseForm.category){
+      // if(!expenseForm.Date){
+      //   const today = getTodaysDate();
+      //   setExpenseForm(
+      //     {...expenseForm, date: today}
+      //   ); //default date is today
+      // }
 
-    //if id is set, edit expense with that id
-    if(expenseForm.id){
-      dispatch({type:expensesActions.edit, payload: expenseForm});
-    }
-    else{
-      const newId=uuidv4();
-      dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId}});
+      //if id is set, edit expense with that id
+      if(expenseForm.id){
+        dispatch({type:expensesActions.edit, payload: {...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()}});//if there is no date set today
+        addToast('Expense edited','emerald-500');
+      }
+      else{
+        const newId=uuidv4();
+        dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()}});
+        addToast('Expense added','emerald-500');
+      }
+    }else{
+      addToast('Complete the form', 'yellow-500');
     }
 
 
@@ -74,24 +80,21 @@ const AddExpenseForm = () => {
               label="Amount"
               type="number"
               value={expenseForm.amount}
-              onChange={handleInputChange}
-              required={true}/>
+              onChange={handleInputChange}/>
 
             <InputGroup
               name="category"
               label="Category"
               type="text"
               value={expenseForm.category}
-              onChange={handleInputChange}
-              required={true}/>
+              onChange={handleInputChange}/>
 
             <InputGroup
               name="date"
               label="Date"
               type="date"
               value={expenseForm.date}
-              onChange={handleInputChange}
-              required={true}/>
+              onChange={handleInputChange}/>
 
             <div className="sm:col-span-2">
               <label className="block text-sm font-medium text-gray-700">Description</label>
