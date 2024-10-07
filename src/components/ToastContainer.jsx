@@ -1,38 +1,42 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import Toast from "./Toast";
+import { useToasts } from "../context/ToastContext";
 
-import Toast from "./Toast"
-
-import {useToasts} from "../context/ToastContext";
-
-const ToastContainer = ({autoClose, closeOnClick, pauseOnHover, transition}) => {
-  const {toasts, addToast, removeToast} = useToasts();
-  const [closing,
-    setClosing] = useState({});
+const ToastContainer = ({ duration = 2000 }) => {
+  const { toasts, removeToast } = useToasts();
+  const [closing, setClosing] = useState({});
 
   useEffect(() => {
-    const timers = toasts.map((toast) => setTimeout(() => {
-      setClosing((prevClosing) => ({
-        ...prevClosing,
-        [toast.id]: true
-      }));
-      setTimeout(() => {
-        removeToast(toast.id);
-      }, 500) //duration of slide in/slide out animation
-    }, 6000));
+    const activeToasts = toasts.filter((toast) => !closing[toast.id]);//only toasts without timers
+    activeToasts.forEach((toast) => {
+      const timerId = setTimeout(() => {
+        setClosing((prevClosing) => ({
+          ...prevClosing,
+          [toast.id]: true,
+        }));
+        setTimeout(() => {
+          removeToast(toast.id);
+        }, 500); // slide-out animation duration
+      }, duration + 500);// duration + slide-in
 
-    timers.forEach((timer) => clearTimeout(timer));
-
-  }, [toasts, removeToast]);
+      return () => clearTimeout(timerId);
+    });
+  }, [toasts, removeToast, closing, duration]);
 
 
   return (
-    <div className="absolute top-32 right-10 flex flex-col gap-6">
-      {toasts.map((toast) => {
-        return (<Toast message="Dodano!" animation={closing[toast.id]}/>)
-      })}
-
+    <div className="fixed top-32 right-10 flex flex-col gap-6">
+      {toasts.map((toast) => (
+        <Toast
+          key={toast.id}
+          message={toast.message}
+          animationSwitch={closing[toast.id]}
+          duration={duration}
+          color={toast.color}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default ToastContainer;

@@ -12,9 +12,13 @@ import {useExpenses} from "../hooks/useExpenses";
 //id generator
 import { v4 as uuidv4 } from "uuid";
 
+//toasts
+import { useToasts } from "../context/ToastContext";
+
 const AddExpenseForm = () => {
 
   const {dispatch, expensesActions,expenseForm, setExpenseForm, expenseFormRef} = useExpenses();
+  const {addToast} = useToasts();
 
   const handleInputChange = (e) => {
     const {name, value} = e.target;

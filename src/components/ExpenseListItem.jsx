@@ -6,9 +6,13 @@ import {FaEdit, FaTrash} from "react-icons/fa"
 //expenses context
 import {useExpenses} from "../hooks/useExpenses";
 
+//toasts
+import { useToasts } from "../context/ToastContext";
+
 const ExpenseListItem = ({expense}) => {
 
   const {dispatch, expensesActions, setExpenseForm, expenseFormRef} = useExpenses();
+  const {addToast} = useToasts();
 
   const handleEdit = () => {
     setExpenseForm(expense);
@@ -17,7 +21,7 @@ const ExpenseListItem = ({expense}) => {
 
   const handleDelete = () => {
     dispatch({type: expensesActions.delete, payload: expense.id});
-
+    addToast("Expense deleted","red-500");
   };
 
   return (
