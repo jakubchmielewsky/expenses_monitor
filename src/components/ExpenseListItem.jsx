@@ -12,7 +12,7 @@ import { useToasts } from "../context/ToastContext";
 
 const ExpenseListItem = ({expense}) => {
 
-  const {dispatch, expensesActions} = useExpenses();
+  const {deleteExpense} = useExpenses();
   const {setExpenseForm, expenseFormRef} = useForm();
   const {addToast} = useToasts();
 
@@ -22,7 +22,8 @@ const ExpenseListItem = ({expense}) => {
   };
 
   const handleDelete = () => {
-    dispatch({type: expensesActions.delete, payload: expense.id});
+    //dispatch({type: expensesActions.delete, payload: expense.id});
+    deleteExpense(expense.id);
     addToast("Expense deleted","red-500");
   };
 

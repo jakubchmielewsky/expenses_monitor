@@ -8,7 +8,6 @@ import { auth } from "../firebaseConfig"; // konfiguracja firebase
 
 const AuthenticationForm = ({isVisible=true}) => {
     const{authenticationForm, setAuthenticationForm,hasAccount,setHasAccount} = useAuthentication();
-    
 
     const handleInputChange = (e) => {
         const {name,value} =e.target;

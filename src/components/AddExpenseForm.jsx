@@ -18,7 +18,7 @@ import { useToasts } from "../context/ToastContext";
 
 const AddExpenseForm = () => {
 
-  const {dispatch, expensesActions} = useExpenses();
+  const {addExpense,editExpense} = useExpenses();
   const {expenseForm, setExpenseForm, expenseFormRef} = useForm();
   const {addToast} = useToasts();
 
@@ -47,12 +47,14 @@ const AddExpenseForm = () => {
 
       //if id is set, edit expense with that id
       if(expenseForm.id){
-        dispatch({type:expensesActions.edit, payload: {...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()}});//if there is no date set today
+        //dispatch({type:expensesActions.edit, payload: {...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()}});//if there is no date set today
+        editExpense({...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense edited','emerald-500');
       }
       else{
         const newId=uuidv4();
-        dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()}});
+        //dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()}});
+        addExpense({...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense added','emerald-500');
       }
     }else{

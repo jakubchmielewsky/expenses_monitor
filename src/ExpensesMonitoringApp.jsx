@@ -22,10 +22,12 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser({
-          email: currentUser.email
+          email: currentUser.email,
+          id: currentUser.uid
         });
       } else {
         setUser(null);
@@ -45,27 +47,26 @@ function App() {
   };
 
   return (
-    <ExpensesProvider>
-      <ToastProvider>
-        <FormProvider>
-          <AuthenticationProvider>
-            <div className="min-h-screen bg-gray-100">
-              {!user?<AuthenticationForm/> : <></>}
-                <ToastContainer duration={2000}/>
-              <NavBar user={user} handleLogout={handleLogout}/>
-              <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <AddExpenseForm/>
-                  <ExpensesSummary/>
-                </div>
-                <ExpensesList/>
-              </main>
-              
-            </div>
-          </AuthenticationProvider>
-        </FormProvider>
-      </ToastProvider>
-    </ExpensesProvider>
+    <AuthenticationProvider>
+      <ExpensesProvider user={user}>
+        <ToastProvider>
+          <FormProvider>
+              <div className="min-h-screen bg-gray-100">
+                {!user?<AuthenticationForm/> : null}
+                  <ToastContainer duration={2000}/>
+                <NavBar user={user} handleLogout={handleLogout}/>
+                <main className="max-w-7xl mx-auto py-12 px-4 gap-6">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <AddExpenseForm/>
+                    <ExpensesSummary/>
+                  </div>
+                  <ExpensesList/>
+                </main>
+              </div>
+          </FormProvider>
+        </ToastProvider>
+      </ExpensesProvider>
+    </AuthenticationProvider>
   );
 }
 
