@@ -62,40 +62,44 @@ const ExpensesSummary = () => {
         data: Object
           .values(aggregateExpenses())
           .map((day) => day.Food || 0),
-        backgroundColor: "rgba(255, 99, 132, 0.8)"
+        backgroundColor: "rgba(255, 99, 132, 0.8)",
       }, {
         label: "Transport",
         data: Object
           .values(aggregateExpenses())
           .map((day) => day.Transport || 0),
-        backgroundColor: "rgba(54, 162, 235, 0.8)"
+        backgroundColor: "rgba(54, 162, 235, 0.8)",
       }, {
         label: "Entertainment",
         data: Object
           .values(aggregateExpenses())
           .map((day) => day.Entertainment || 0),
-        backgroundColor: "rgba(75, 192, 192, 0.8)"
+        backgroundColor: "rgba(75, 192, 192, 0.8)",
       }, {
         label: "Other",
         data: Object
           .values(aggregateExpenses())
           .map((day) => day.Other || 0),
-        backgroundColor: "rgba(153, 102, 255, 0.8)"
+        backgroundColor: "rgba(153, 102, 255, 0.8)",
       }
     ]
   };
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false, 
     scales: {
       x: {
-        stacked: true
+        stacked: true,
       },
       y: {
-        stacked: true
+        stacked: true,
+        beginAtZero: true,
       }
     }
   };
+  
+  const chartWidth= expenses.length *60;
 
   const handleChartViewChange = (e) => {
     setChartView(e.target.value);
@@ -113,17 +117,17 @@ const ExpensesSummary = () => {
             Export
           </button>
         </div>
-        <p className="mt-2 font-medium">Chart View</p>
+        <label className="mt-2 block font-medium">Chart View</label>
         <select
           name="chart view"
-          className="w-full border-gray-300 shadow rounded-lg outline-none pl-3 pt-2 focus:"
+          className="w-full border-gray-300 bg-white block shadow rounded-lg outline-none pl-3 py-0.5 mt-2"
           onChange={handleChartViewChange}>
           <option value="daily">Daily</option>
           <option value="monthly">Monthly</option>
         </select>
 
         <div className="overflow-x-auto mt-2 h-64">
-          <div className="min-w-[500px]  w-full h-full">
+          <div className="min-w-[500p]  w-full h-full" style={{width:chartWidth}}>
             <Bar data={chartData} options={chartOptions}/>
           </div>
         </div>

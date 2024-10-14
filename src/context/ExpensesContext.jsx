@@ -1,5 +1,5 @@
 import React,{createContext, useReducer, useContext, useEffect} from "react";
-import { collection, addDoc, deleteDoc, doc, getDocs, updateDoc,query,where, count } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc, getDocs, updateDoc,query,where} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
  const ExpensesContext = createContext();

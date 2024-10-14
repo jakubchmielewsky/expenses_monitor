@@ -18,7 +18,7 @@ const InputGroup = ({
         type={type}
         value={value}
         onChange={onChange}
-        className="mt-2 shadow w-full block focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+        className="mt-2 shadow w-full block border-gray-300 rounded-md pl-3 py-0.5"
         required={required}/>
 
     </div>

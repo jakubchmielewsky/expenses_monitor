@@ -10,9 +10,6 @@ import InputGroup from "./InputGroup";
 import { useExpenses } from "../context/ExpensesContext";
 import { useForm } from "../context/FormContext";
 
-//id generator
-import { v4 as uuidv4 } from "uuid";
-
 //toasts
 import { useToasts } from "../context/ToastContext";
 
@@ -45,17 +42,13 @@ const AddExpenseForm = () => {
 
     if(expenseForm.amount && expenseForm.category){
 
-      //if id is set, edit expense with that id
       if(edit){
-        //dispatch({type:expensesActions.edit, payload: {...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()}});//if there is no date set today
         editExpense({...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense edited','emerald-500');
         setEdit(false);
       }
       else{
-        //const newId=uuidv4();
-        //dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()}});
-        addExpense({...expenseForm/*, id: newId*/,date:expenseForm.date?expenseForm.date:getTodaysDate()});
+        addExpense({...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense added','emerald-500');
       }
     }else{
@@ -81,12 +74,27 @@ const AddExpenseForm = () => {
               value={expenseForm.amount}
               onChange={handleInputChange}/>
 
-            <InputGroup
+            {/* <InputGroup
               name="category"
               label="Category"
               type="text"
               value={expenseForm.category}
-              onChange={handleInputChange}/>
+              onChange={handleInputChange}/> */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Category</label>
+                <select
+                  name="category"
+                  className="mt-2 shadow w-full block border-gray-300 rounded-md pl-3 py-0.5"
+                  onChange={handleInputChange}
+                  value={expenseForm.category}>
+                  <option value="other">other</option>
+                  <option value="rent">rent</option>
+                  <option value="food">food</option>
+                  <option value="bills">bills</option>
+                  <option value="transport">transport</option>
+                  
+                </select>
+              </div>
 
             <InputGroup
               name="date"
