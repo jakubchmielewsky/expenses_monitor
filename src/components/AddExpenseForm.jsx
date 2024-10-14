@@ -19,7 +19,7 @@ import { useToasts } from "../context/ToastContext";
 const AddExpenseForm = () => {
 
   const {addExpense,editExpense} = useExpenses();
-  const {expenseForm, setExpenseForm, expenseFormRef} = useForm();
+  const {expenseForm, setExpenseForm, expenseFormRef, edit, setEdit} = useForm();
   const {addToast} = useToasts();
 
   const handleInputChange = (e) => {
@@ -46,15 +46,16 @@ const AddExpenseForm = () => {
     if(expenseForm.amount && expenseForm.category){
 
       //if id is set, edit expense with that id
-      if(expenseForm.id){
+      if(edit){
         //dispatch({type:expensesActions.edit, payload: {...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()}});//if there is no date set today
         editExpense({...expenseForm,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense edited','emerald-500');
+        setEdit(false);
       }
       else{
-        const newId=uuidv4();
+        //const newId=uuidv4();
         //dispatch({type:expensesActions.add, payload: {...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()}});
-        addExpense({...expenseForm, id: newId,date:expenseForm.date?expenseForm.date:getTodaysDate()});
+        addExpense({...expenseForm/*, id: newId*/,date:expenseForm.date?expenseForm.date:getTodaysDate()});
         addToast('Expense added','emerald-500');
       }
     }else{
@@ -62,7 +63,7 @@ const AddExpenseForm = () => {
     }
 
 
-    setExpenseForm({id: "", amount: "", category: "", date: "", description: ""});
+    setExpenseForm({amount: "", category: "", date: "", description: ""});
   }
 
 
@@ -70,7 +71,7 @@ const AddExpenseForm = () => {
     <div className="bg-white overflow-hidden shadow rounded-lg" ref={expenseFormRef}>
       <div className="px-4 py-5">
         <h2 className="text-lg font-medium text-gray-900 mb-4">
-        {expenseForm.id?"Edit":"Add new"} expense</h2>
+        {edit?"Edit":"Add new"} expense</h2>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
             <InputGroup
@@ -109,7 +110,7 @@ const AddExpenseForm = () => {
             type="submit"
             className="text-white bg-indigo-500 px-6 py-2 rounded-md mx-auto mt-4 inline-flex items-center gap-2">
             <FaPlus/>
-            {expenseForm.id?"Edit":"Add"} Expense
+            {edit?"Edit":"Add"} Expense
           </button>
         </form>
       </div>

@@ -13,11 +13,12 @@ import { useToasts } from "../context/ToastContext";
 const ExpenseListItem = ({expense}) => {
 
   const {deleteExpense} = useExpenses();
-  const {setExpenseForm, expenseFormRef} = useForm();
+  const {setExpenseForm, expenseFormRef,setEdit} = useForm();
   const {addToast} = useToasts();
 
   const handleEdit = () => {
     setExpenseForm(expense);
+    setEdit(true);
     expenseFormRef.current.scrollIntoView({behavior: 'smooth'});
   };
 

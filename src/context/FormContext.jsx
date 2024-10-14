@@ -4,10 +4,11 @@ const FormContext = createContext();
 
 export const FormProvider= ({children}) => {
     const expenseFormRef = useRef();
-    const [expenseForm, setExpenseForm] = useState({id: "", amount: "", category: "", date: "", description: ""});
+    const [edit, setEdit] = useState(false);
+    const [expenseForm, setExpenseForm] = useState({amount: "", category: "", date: "", description: ""});
 
     return(
-        <FormContext.Provider value={{expenseForm, setExpenseForm, expenseFormRef}}>
+        <FormContext.Provider value={{expenseForm, setExpenseForm, expenseFormRef,edit, setEdit}}>
             {children}
         </FormContext.Provider>
     )
