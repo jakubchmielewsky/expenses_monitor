@@ -81,6 +81,18 @@ const ExpensesSummary = () => {
           .values(aggregateExpenses())
           .map((day) => day.Other || 0),
         backgroundColor: "rgba(153, 102, 255, 0.8)",
+      }, {
+        label: "Rent",
+        data: Object
+          .values(aggregateExpenses())
+          .map((day) => day.Rent || 0),
+        backgroundColor: "rgba(255, 206, 86, 0.8)",
+      }, {
+        label: "Bills",
+        data: Object
+          .values(aggregateExpenses())
+          .map((day) => day.Bills || 0),
+        backgroundColor: "rgba(255, 159, 64, 0.8)",
       }
     ]
   };
@@ -99,7 +111,7 @@ const ExpensesSummary = () => {
     }
   };
   
-  const chartWidth= expenses.length *60;
+  const chartWidth= Object.keys(aggregateExpenses()).length *60 +20;
 
   const handleChartViewChange = (e) => {
     setChartView(e.target.value);

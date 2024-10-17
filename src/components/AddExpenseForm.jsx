@@ -87,11 +87,12 @@ const AddExpenseForm = () => {
                   className="mt-2 shadow w-full block border-gray-300 rounded-md pl-3 py-0.5"
                   onChange={handleInputChange}
                   value={expenseForm.category}>
-                  <option value="other">other</option>
-                  <option value="rent">rent</option>
-                  <option value="food">food</option>
-                  <option value="bills">bills</option>
-                  <option value="transport">transport</option>
+                  <option value="Other">Other</option>
+                  <option value="Rent">Rent</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Food">Food</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Transport">Transport</option>
                   
                 </select>
               </div>
