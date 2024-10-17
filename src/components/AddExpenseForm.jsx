@@ -56,7 +56,7 @@ const AddExpenseForm = () => {
     }
 
 
-    setExpenseForm({amount: "", category: "", date: "", description: ""});
+    setExpenseForm({...expenseForm,amount: "", date: "", description: ""});
   }
 
 

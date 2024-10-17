@@ -39,7 +39,6 @@ export const ExpensesProvider = ({children, user}) => {
       };
     
       const deleteExpense = async (id) => {
-        console.log(id);
         await deleteDoc(doc(db, "expenses", id));
         dispatch({ type: "DELETE", payload: id });
       };
